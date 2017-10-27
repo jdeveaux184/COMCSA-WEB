@@ -1,0 +1,83 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="pull-left">
+			 <span> User</span>
+		</h1>
+		<hr>	
+		<div class=" pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			<back-button></back-button>
+	
+			<button type="button" class="btn btn-default update" ng-click="userData.changePassword()" ng-if="userData._id == user._id"><i class="fa fa-save"></i>&nbsp;<span>Cambiar Contraseña</span></button>
+			<button type="submit" form="userForm" class="btn btn-primary update" ng-click="save()"><i class="fa fa-save"></i>&nbsp;<span>Guardar</span></button>
+		</div>
+		<hr />
+	</div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<form class="form" id="userForm" name="userForm">
+		<div class="col-xs-12 col-md-6">
+			<div class="form-group">
+				<label for="firstName">Nombres</label>
+				<input type="text" class="form-control" ng-model="user.entity.firstName" id="firstName" placeholder="Primer y Segundo Nombre">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<div class="form-group">
+				<label for="lastName">Apellidos</label>
+				<input type="text" class="form-control" ng-model="user.entity.lastName" id="lastName" placeholder="Primer y Segundo Apellido">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<div class="form-group">
+				<label for="email">Correos</label>
+				<input type="email" class="form-control" ng-model="user.account.email" id="email" placeholder="Correo Electrónico">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6">
+			<div class="form-group">
+				<label for="url">URL</label>
+				<input type="text" class="form-control" ng-model="user.entity.url" id="url" placeholder="URL / Website">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6" ng-if="userData.role._id == 1">
+			<div class="form-group">
+				<label for="role">Rol</label>
+				<select class="form-control" ng-model="user.role" id="role" ng-options="role as role.description for role in roles track by role._id"></select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6" ng-if="user.role._id == 3">
+			<div class="form-group">
+				<label for="role">Compañía</label>
+				<select class="form-control" ng-model="user.company" id="role" ng-options="company as company.entity.name for company in companies track by company._id" ng-change="getBranches(user.company)" ng-disabled="userData.role._id != 1"></select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6" ng-if="user.role._id == 3 && user.company">
+			<div class="form-group">
+				<label for="isRegionalManager">Es Gerente de Proyecto</label>
+				<input type="checkbox" class="form-control" ng-model="user.isRegionalManager" id="isRegionalManager">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6" ng-if="user.role._id == 3 && user.company">
+			<div class="form-group">
+				<label for="showDueDates">Esconder Due Dates</label>
+				<input type="checkbox" class="form-control" ng-model="user.hideDueDates" id="showDueDates">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-6" ng-if="user.role._id == 3 && user.company">
+			<div class="form-group">
+				<label for="branch">Proyecto</label>
+				<select class="form-control" ng-model="user.branch" id="branch" ng-options="branch as branch.name for branch in branches track by branch._id" ng-disabled="userData.role._id != 1"></select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-12" ng-if="user.role._id == 4">
+			<div class="form-group">
+				<label for="name">Teléfono (Cel)</label>
+				<phone-model hide-labels="true" ng-model="user.phone"></phone-model>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-12" ng-if="user.role._id == 4">
+			<label for="address">Dirección</label>
+			<address-model id="address" ng-model="user.address" ></address-model>
+		</div>
+	</form>
+</div>

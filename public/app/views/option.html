@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="pull-left">
+			<span> Mantemiento de Opción</span>
+		</h1>
+		<hr>
+		<div class="btn-group pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			<button type="submit" form="companyForm" class="btn btn-primary update" ng-click="save()"><i class="fa fa-save"></i>&nbsp;<span>Guardar</span></button>
+			<back-button></back-button>
+		</div>
+		<hr />
+	</div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<form class="form" id="companyForm" name="companyForm" novalidate>
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label for="description">Nombre</label>
+				<input type="text" class="form-control" ng-model="option.description" id="description" placeholder="Nombre">
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label for="url">Ruta</label>
+				<input type="text" class="form-control" ng-model="option.url" id="url" placeholder="Nombre de la Ruta">
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="form-group">
+				<label for="submenu">Submenú</label>
+				 <select class="form-control" ng-model="option.submenu" ng-options="submenu as submenu.description for submenu in subMenuList track by submenu._id" >
+			</div>
+		</div>
+		
+	</form>
+</div>

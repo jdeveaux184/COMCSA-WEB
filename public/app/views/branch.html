@@ -1,0 +1,135 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="pull-left">
+			<span> Proyecto</span>
+		</h1>
+		<hr>
+		<div class="btn-group pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			<button type="submit" form="userForm" class="btn btn-primary update" ng-click="createCSCoordinatorString()"><i class="fa fa-save"></i>&nbsp;<span>Guardar</span></button>
+			<back-button></back-button>
+		</div>
+		<hr />
+	</div>
+</div>
+<div class="col-xs-12 col-md-12">
+	<form class="form" id="userForm" name="userForm">
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="company">Compañía</label>
+				<select class="form-control" ng-model="branch.company" ng-options="company as company.entity.name for company in companies track by company._id" id="company"></select>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Nombre</label>
+				<input type="text" class="form-control" ng-model="branch.name" id="name" placeholder="Nombre del Proyecto">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Presupuesto (RD$) </label>
+				<input type="number" class="form-control" ng-model="branch.budget" id="budget" placeholder="Presupuesto">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-8">
+			<div class="form-group">
+				<label for="operationsManager">Gerente de Proyecto</label>
+				<input type="text" class="form-control" ng-model="branch.operationsManager.name" id="operationsManager" placeholder="Gerente de Proyecto">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Teléfono Gerente (Cel)</label>
+				<phone-model hide-labels="true" ng-model="branch.operationsManager.phone"></phone-model>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-8">
+			<div class="form-group">
+				<label for="officeCoordinator">Coordinador</label>
+				<input type="text" class="form-control" ng-model="branch.officeCoordinator.name" id="officeCoordinator" placeholder="Coordinador">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Teléfono Coordinador (Cel)</label>
+				<phone-model hide-labels="true" ng-model="branch.officeCoordinator.phone"></phone-model>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-8">
+			<div class="form-group">
+				<label for="branchManager">Ingeniero Obra</label>
+				<input type="text" class="form-control" ng-model="branch.branchManager.name" id="branchManager" placeholder="Ingeniero Obra">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Ingeniero Obra (Cel)</label>
+				<phone-model hide-labels="true" ng-model="branch.branchManager.phone"></phone-model>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-8">
+			<div class="form-group">
+				<label for="officeManager">Maestro Constructor</label>
+				<input type="text" class="form-control" ng-model="branch.officeManager.name" id="officeManager" placeholder="Maestro Constructor">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Teléfono Maestro (Cel)</label>
+				<phone-model hide-labels="true" ng-model="branch.officeManager.phone"></phone-model>
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-8">
+			<div class="form-group">
+				<label for="dispatcher">Contable</label>
+				<input type="text" class="form-control" ng-model="branch.dispatcher.name" id="dispatcher" placeholder="Contable">
+			</div>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="form-group">
+				<label for="name">Teléfono Contable (Cel)</label>
+				<phone-model hide-labels="true" ng-model="branch.dispatcher.phone"></phone-model>
+			</div>
+		</div>
+
+
+		<!-- <div class="col-xs-12 col-md-12">
+			<table class="table table-striped table-hover" width="100%" style="margin: 0 auto">
+				<thead>
+					<tr>
+						<th width="90%">
+							Customer Service Coordinator
+						</th>
+						<th width="10%">
+							<button class="btn btn-sm btn-primary pull-right" ng-click="add()">
+								<i class="fa fa-plus"></i> Add another
+							</button>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="coord in branch.custServiceCoordinators track by $index">
+						<td>
+							<input type="text" class="form-control" ng-model="coord.name" />
+						</td>
+						<td>
+							<button class="btn btn-sm btn-danger" ng-click="remove($index)">
+								<i class="fa fa-times"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div> -->
+		<div class="col-xs-12">
+			<h2 class="pull-left"><i class="fa fa-map"></i>&nbsp;Dirección</h2>
+			<button type="button" class="btn btn-sm btn-primary pull-right" style="margin-top:20px" ng-click="addAddress()"><i class="fa fa-plus"></i></button>
+		</div>
+		<div class="col-xs-12" ng-repeat="address in branch.addresses track by $index">
+			<div class="col-xs-12">
+				<button type="button" class="btn btn-sm btn-danger pull-right" style="margin-top:20px;" ng-click="removeAddress($index)"><i class="fa fa-minus"></i></button>
+			</div>
+			<address-model ng-model="branch.addresses[$index]"></address-model>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,112 @@
+<div class="hidden-print">
+  <div class="row">
+  <div class="col-xs-12">
+    <h1 class="pull-left">
+       <span> Reporte 607 </span>
+    </h1>
+    <div class="pull-right">
+      <br>
+      <button type="button" class="btn guardar-botton" ng-click="exportTo(data, totalAmount, taxAmount)" ng-disabled="changed">
+        <i class="fa fa-file-excel-o"></i> Generar
+      </button>
+       <a id="downloadReport" ng-href="{{ path }}" ng-show="{{ false }}" download="report.xlsx">Download</a>
+    </div>
+    <hr>
+    <hr />
+  </div>
+</div>
+<div class="row" style="margin:10px;">
+    <div class="col-xs-4 p-left">
+      <!--   <label>RNC o Cédula: </label> {{ userData.entity.entityType == 'Compañía' ? userData.entity.RNC : userData.entity.identificationCode }}
+        <hr/> -->
+        <label>Período:</label>
+        <div class="row">
+          <div class="col-sm-6">
+            <select class="form-control" ng-model="period.year" ng-options="o for o in yearList track by o" ng-change="changed = true"></select>
+          </div>
+          <div class="col-sm-4">
+            <select class="form-control" ng-model="period.month" ng-options="o for o in monthList track by o" ng-change="changed = true"></select>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-sm " ng-click="filterBy(period)" ng-disabled="!changed">
+              <i class="fa fa-search"></i> Buscar
+            </button>
+          </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin: 10px;">
+  
+    <table class="table table-bordered">
+      <thead>
+        <tr style="background-color: #1560bd">
+          <th>
+            Identificación
+          </th>
+          <th>
+            Tipo Identificación
+          </th>
+          <th>
+            NCF
+          </th>
+          <th>
+            Fecha Comprobante
+          </th>
+          <th>
+            Fecha Pago
+          </th>
+          <th>
+            ITBIS Facturado
+          </th>
+          <th>
+            ITBIS Retenido
+          </th>
+          <th>
+            Retención Renta
+          </th>
+          <th>
+            Monto Facturado
+          </th>
+        </tr>
+      </thead>
+      <tr ng-repeat="doc in data track by $index">
+        <td>
+          {{ doc.id }}
+        </td>
+        <td>
+          {{ doc.idType.description}}
+        </td>
+        <td>
+          {{ doc.NCF }}
+        </td>
+        <td>
+          {{ doc.date }}
+        </td>
+        <td>
+          {{ doc.payDate }}
+        </td>
+        <td>
+          {{ doc.tax | currency }}
+        </td>
+        <td>
+          {{ doc.tax | currency }}
+        </td>
+        <td>
+          {{ doc.tax | currency }}
+        </td>
+        <td>
+          {{ doc.amount | currency }}
+        </td>
+      </tr>
+    </table>
+</div>
+   
+<div class="row">
+
+    <div class="col-xs-3">
+        <p><label>Cantidad Registros: </label> {{ data.length }}</p>
+        <p><label>Total Monto: </label> {{ totalAmount | currency }}</p>
+        <p><label>ITBIS calculado:</label>{{taxAmount | currency}}</p>
+    </div>
+
+</div>

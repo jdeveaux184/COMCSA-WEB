@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>Ing. Amable Montás</title>
+
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome-4.6.3/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="bower_components/angularjs-toaster/toaster.min.css"/>
+		<link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css"/>
+		<link rel="stylesheet" type="text/css" href="bower_components/angular-dialog-service/dist/dialogs.min.css"/>
+		<link rel="stylesheet" type="text/css" href="bower_components/ui-select/dist/select.min.css"/>
+		<link rel="stylesheet" type="text/css" href="bower_components/bower_components/admin-lte/dist/css/AdminLTE.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/dashboard.css"/>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+		<link rel="stylesheet" type="text/css" href="css/sidebar.css"/>
+		<link rel="icon" href="./favicon.ico"/>
+	</head>
+	<body ng-app="COMCSAApp" >
+		<header class="navbar navbar-fixed-top hidden-print" ng-show="isAuthenticated">
+			<div class="container-fluid">
+				<div class="navbar-header" style="width: 100%">
+					<button class="navbar-toggle" >
+						<i class="fa fa-bars fa-lg"></i>
+					</button>
+					<a class="navbar-brand">
+						<img src="./images/logoweb.png" style="width:100%; max-width:200px"/> 
+					</a>
+				    <div class="col-md-5 pull-right hidden-xs hidden-s">
+				    	<br>
+				    	<div class="pull-right">
+				        <button class="btn btn-default" disabled>Compañía: {{companyData.entity.name}}</button>
+					    <button class="btn btn-default" disabled>Proyecto: {{branchData.name}}</button>						
+						<button class="btn btn-default" ng-click="openCompanyModal(true)"><span class="fa fa-exchange">	</span></button>
+				    		
+				    	</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="container-fluid">
+			<div class="row" ng-controller="SessionCtrl">
+				<toaster-container></toaster-container>
+				<div ></div>
+				<!-- <div id="sidebar" class="col-xs-10 col-md-2 sidebar" ng-controller="NavigationCtrl" ng-show="isAuthenticated">
+					<ul class="nav nav-sidebar">
+						<li style="background-color: #002d7f; color: white; padding: 20px;">
+							<button class="navbar-toggle pull-right" >
+								<i class="fa fa-times fa-lg" style="color:#333333"></i>
+							</button>
+							<br>
+							<br>
+							<span>&nbsp;<b>{{ userData.entity.fullName }}</b></span>
+						</li>
+						<li ng-repeat="rOptions in roleOptions | orderBy: 'sort' track by $index" ng-if="rOptions.sort != 0">
+							<a ng-href="{{ '#' + rOptions.option.url}}">
+								<i class="fa" ng-class="rOptions.option.icon"></i>
+								&nbsp;
+								{{rOptions.option.description}}
+							</a>
+						</li>
+						<li>
+							<a ng-click="userData.logout()"><i class="fa fa-sign-out"></i>&nbsp;Cerrar Sesión</a>
+						</li>
+					</ul>
+				</div> -->
+
+
+				<div class="nav-side-menu col-md-2 col-xs-9 hidden-print" ng-controller="NavigationCtrl"  ng-show="isAuthenticated		">
+				    <div class="brand"><span><b>{{ userData.entity.fullName }}</b></span></div>
+				    <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+				  
+				        <div class="menu-list">
+				  
+				            <ul id="menu-content" class="menu-content collapse out">
+
+				                <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+				                  <a href=""><i class="fa fa-credit-card fa-lg"></i> Suplidores <span class="arrow"></span></a>
+				                </li>
+				                <ul class="sub-menu collapse" id="products">
+				                    <li ng-repeat="rOptions in providerRoleOptions | orderBy: 'sort' track by $index" ng-if="rOptions.sort != 0">
+										<a ng-href="{{ '#' + rOptions.option.url}}">
+											{{rOptions.option.description}}
+										</a>
+									</li>
+				                </ul>
+
+
+				                <li data-toggle="collapse" data-target="#service" class="collapsed">
+				                  <a href=""><i class="fa fa-money fa-lg"></i> Clientes <span class="arrow"></span></a>
+				                </li>  
+				                <ul class="sub-menu collapse" id="service">
+				                  <li ng-repeat="rOptions in clientRoleOptions | orderBy: 'sort' track by $index" ng-if="rOptions.sort != 0">
+										<a ng-href="{{ '#' + rOptions.option.url}}">
+											{{rOptions.option.description}}
+										</a>
+									</li>
+				                </ul>
+
+
+				                <li data-toggle="collapse" data-target="#new" class="collapsed">
+				                  <a href=""><i class="fa fa-cog fa-lg"></i> Configuración <span class="arrow"></span></a>
+				                </li>
+				                <ul class="sub-menu collapse" id="new">
+				                  <li ng-repeat="rOptions in configRoleOptions | orderBy: 'sort' track by $index" ng-if="rOptions.sort != 0">
+										<a ng-href="{{ '#' + rOptions.option.url}}">
+											{{rOptions.option.description}}
+										</a>
+									</li>
+				                </ul>
+
+				                <li  data-toggle="collapse" data-target="#report" class="collapsed">
+				                  <a href="">
+				                  <i class="fa fa-line-chart fa-lg"></i> Reportes <span class="arrow"></span>
+				                  </a>
+				                </li>
+				                <ul class="sub-menu collapse" id="report">
+				                  <li ng-repeat="rOptions in reportRoleOptions | orderBy: 'sort' track by $index" ng-if="rOptions.sort != 0">
+										<a ng-href="{{ '#' + rOptions.option.url}}">
+											{{rOptions.option.description}}
+										</a>
+									</li>
+				                </ul>
+
+				                 <li>
+				                  <a ng-click="userData.logout()">
+				                  <i class="fa fa-sign-out"></i> Cerrar Sesión
+				                  </a>
+				                  </li>
+				            </ul>
+
+
+				     </div>
+				</div>
+				<div class="main" ng-class="{ 'col-xs-12': !isAuthenticated, 'col-sm-9': isAuthenticated, 'col-sm-offset-3': isAuthenticated, 'col-md-10': isAuthenticated, 'col-md-offset-2': isAuthenticated }">
+					<div ng-view="" class="col-xs-12"></div>
+				</div>
+			</div>
+		</div>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhmuU1WbbPbyGC7iB1N-4LalpZFJI5irg&signed_in=true&libraries=places,geometry"
+        async defer></script>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+	    <script src="bower_components/angular/angular.js"></script>
+	    <script src="bower_components/bower_components/admin-lte/dist/js/adminlte.min.js"></script>
+	    <script src="bower_components/hammerjs/hammer.min.js"></script>
+	    <script src="bower_components/AngularHammer/angular.hammer.min.js"></script>
+	    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	    <script src="bower_components/angular-animate/angular-animate.js"></script>
+	    <script src="bower_components/angular-aria/angular-aria.js"></script>
+	    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	    <script src="bower_components/angular-messages/angular-messages.js"></script>
+	    <script src="bower_components/angular-resource/angular-resource.js"></script>
+	    <script src="bower_components/angular-route/angular-route.js"></script>
+	    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	    <script src="bower_components/angular-touch/angular-touch.js"></script>
+	    <script src="bower_components/angularjs-toaster/toaster.min.js"></script>
+	    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+	    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+	    <script src="bower_components/angular-dialog-service/dist/dialogs.min.js"></script>
+	    <script src="bower_components/angular-dialog-service/dist/dialogs-default-translations.min.js"></script>
+	    <script src="bower_components/angular-validator/angular-validation.min.js"></script>
+	    <script src="bower_components/angular-validator/angular-validation-rule.min.js"></script>
+	    <script src="bower_components/moment/moment.min.js"></script>
+	    <script src="bower_components/jquery-mask/jquery.mask.min.js"></script>
+	    <script src="bower_components/ui-select/dist/select.min.js"></script>
+	    <script src="bower_components/underscore/underscore.min.js"></script>
+	    <script src="bower_components/highcharts/highcharts.js"></script>
+	    <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+		<script>
+			$('.navbar-toggle').click(function(){
+				$('#sidebar').toggleClass('sidebar');
+				$('#sidebar').toggleClass('sidebarease');
+			});
+		</script>
+		<script src="scripts/app.js"></script>
+		<script src="scripts/directives/crudTypeTable.js"></script>
+		<script src="scripts/directives/list.js"></script>
+		<script src="scripts/directives/backbutton.js"></script>
+		<script src="scripts/directives/address.js"></script>
+		<script src="scripts/directives/phone.js"></script>
+		<script src="scripts/directives/contact.js"></script>
+		<script src="scripts/directives/datepicker.js"></script>
+		<script src="scripts/directives/entitypicker.js"></script>
+		<script src="scripts/services/authinterceptor.js"></script>
+		<script src="scripts/services/base.js"></script>
+		<script src="scripts/services/city.js"></script>
+		<script src="scripts/services/country.js"></script>
+		<script src="scripts/services/state.js"></script>
+		<script src="scripts/services/role.js"></script>
+		<script src="scripts/services/option.js"></script>
+		<script src="scripts/services/roleoptions.js"></script>
+		<script src="scripts/services/roleoptions.js"></script>
+		<script src="scripts/services/company.js"></script>
+		<script src="scripts/services/branch.js"></script>
+		<script src="scripts/services/tax.js"></script>
+		<script src="scripts/services/invoice.js"></script>
+		<script src="scripts/services/document.js"></script>
+		<script src="scripts/services/payment.js"></script>
+		<script src="scripts/services/providerInvoice.js"></script>
+		<script src="scripts/services/debitNote.js"></script>
+		<script src="scripts/services/creditNote.js"></script>
+		<script src="scripts/services/item.js"></script>
+		<script src="scripts/services/itemType.js"></script>
+		<script src="scripts/services/user.js"></script>
+		<script src="scripts/services/client.js"></script>
+		<script src="scripts/services/provider.js"></script>
+		<script src="scripts/services/list.js"></script>
+		<script src="scripts/services/loading.js"></script>
+		<script src="scripts/controllers/navigation.js"></script>
+		<script src="scripts/controllers/session.js"></script>
+		<script src="scripts/controllers/login.js"></script>
+		<script src="scripts/controllers/changePassword.js"></script>
+		<script src="scripts/controllers/forgetPassword.js"></script>
+		<script src="scripts/controllers/user.js"></script>
+		<script src="scripts/controllers/userList.js"></script>
+		<script src="scripts/controllers/client.js"></script>
+		<script src="scripts/controllers/clientList.js"></script>
+		<script src="scripts/controllers/provider.js"></script>
+		<script src="scripts/controllers/providerList.js"></script>
+		<script src="scripts/controllers/item.js"></script>
+		<script src="scripts/controllers/itemList.js"></script>
+		<script src="scripts/controllers/itemType.js"></script>
+		<script src="scripts/controllers/itemTypeList.js"></script>
+		<script src="scripts/controllers/transactions.js"></script>
+		<script src="scripts/controllers/clientTransactions.js"></script>
+		<script src="scripts/controllers/providerBalance.js"></script>
+		<script src="scripts/controllers/clientBalance.js"></script>
+		<script src="scripts/controllers/roleList.js"></script>
+		<script src="scripts/controllers/option.js"></script>
+		<script src="scripts/controllers/optionList.js"></script>
+		<script src="scripts/controllers/roleOptionsList.js"></script>
+		<script src="scripts/controllers/company.js"></script>
+		<script src="scripts/controllers/companyList.js"></script>
+		<script src="scripts/controllers/taxList.js"></script>
+		<script src="scripts/controllers/taxes.js"></script>
+		<script src="scripts/controllers/assignCompanies.js"></script>
+		<script src="scripts/controllers/invoice.js"></script>
+		<script src="scripts/controllers/invoiceList.js"></script>
+		<script src="scripts/controllers/payment.js"></script>
+		<script src="scripts/controllers/paymentList.js"></script>
+		<script src="scripts/controllers/providerPayment.js"></script>
+		<script src="scripts/controllers/providerPaymentList.js"></script>
+		<script src="scripts/controllers/providerInvoice.js"></script>
+		<script src="scripts/controllers/providerInvoiceList.js"></script>
+		<script src="scripts/controllers/creditNote.js"></script>
+		<script src="scripts/controllers/creditNoteList.js"></script>
+		<script src="scripts/controllers/providerCreditNote.js"></script>
+		<script src="scripts/controllers/providerCreditNoteList.js"></script>
+		<script src="scripts/controllers/debitNote.js"></script>
+		<script src="scripts/controllers/debitNoteList.js"></script>
+		<script src="scripts/controllers/providerDebitNote.js"></script>
+		<script src="scripts/controllers/providerDebitNoteList.js"></script>
+		<script src="scripts/controllers/branchList.js"></script>
+		<script src="scripts/controllers/branch.js"></script>
+		<script src="scripts/controllers/606.js"></script>
+		<script src="scripts/controllers/607.js"></script>
+		<script src="scripts/controllers/608.js"></script>
+		<script src="scripts/controllers/invoiceReport.js"></script>
+		<script src="scripts/controllers/providerInvoiceReport.js"></script>
+		<script type="text/javascript" src="scripts/controllers/modals/selectCompany.js"></script>
+	</body>
+</html>

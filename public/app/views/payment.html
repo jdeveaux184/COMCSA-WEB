@@ -1,0 +1,171 @@
+<div >
+	<div class="row">
+	<div class="col-xs-12">
+		<h1 class="pull-left">
+			 <span> Pago (Cliente) </span>
+		</h1>
+		<hr>
+		<div class="pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			
+			<button type="button" class="btn btn-default noBorder" ng-click="export()" ng-if="payment._id">
+				<i class="fa fa-print"></i><span></span>
+			</button>
+			<back-button></back-button>
+			<button type="submit" form="userForm" class="btn btn-primary update" ng-click="saveCompany()">
+				<i class="fa fa-save"></i><span></span>
+			</button>
+		</div>
+		<div class="btn- pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			
+		</div>
+		<hr />
+	</div>
+</div>
+<form class="form" id="userForm" name="userForm" novalidate>
+	<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<h3><label>Documento # </label> <span class="label label-primary">{{payment.code}}</span></h3>
+					
+				</div>
+			</div>
+			<div class="col-sm-6 ">
+				<div class="form-group pull-right">
+					<label for="date">Fecha Creacion: <label>
+					{{payment.date | date:'dd/MM/yyyy'}}
+				</div>
+			</div>
+	</div>
+	<div class="row" style="margin-top:50px">
+		<div class="col-xs-12">
+			<div class="col-sm-3">
+				<div class="col-xs-12">
+						<div class="form-group">
+							<label for="date">Compañía</label>
+							<select class="form-control" ng-model="payment.company" ng-class="isChanged('company')" ng-change="changed('company'); companyChanged(payment.client.company)" ng-options="company as company.entity.name for company in listCompany track by company._id" ng-disabled="isDisabled() || userData.role._id != 1 || !payment.client._id || companyData" ></select>
+						</div>
+				</div>
+				<div class="col-xs-12">
+						<div class="form-group">
+							<label for="date">Proyecto</label>
+							<select class="form-control" ng-model="payment.branch" ng-class="isChanged('branch')" ng-change="changed('branch'); branchChanged(payment.branch)" ng-options="branch as branch.name for branch in listBranches track by branch._id" ng-disabled="isDisabled() || userData.role._id != 1 || !payment.client._id || branchData" ></select>
+						</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+					<div class="col-xs-12 pull-right">
+						<div class="form-group">
+							<label for="Client">Cliente</label>
+							<entitypicker ng-model="payment.client" ng-change="clientChanged(payment.client)" ws-class="wsClass" ws-fields="wsFields" ws-filter="filterC" ws-label="'name'" disable="userData.role._id != 1"></entitypicker>
+						</div>
+					</div>
+			</div>
+			<div class="col-sm-3">
+					<div class="col-xs-12 pull-right">
+						<div class="form-group">
+							<label for="date">Fecha</label>
+							<sc-datepicker ng-model="payment.date" ng-class="isChanged('date')" ng-change="changed('date')" ng-disabled="isDisabled()"></sc-datepicker>
+						</div>
+					</div>
+			</div>
+			<div class="col-sm-3">
+				
+					<div class="col-xs-12 pull-right">
+						<div class="form-group">
+							<label for="date">Forma de Pago</label>
+							<select class="form-control" ng-model="payment.paymentChoice" ng-class="isChanged('paymentChoice')" ng-change="changed('paymentChoice');" ng-options="paymentChoice as paymentChoice.description for paymentChoice in paymentChoiceList track by paymentChoice.code" ></select>
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table table-bordered table-hover" width="100%" style="margin: 0 auto">
+				<thead>
+					<tr style="background-color: #3F51B5; color: white">
+						<th width="10%">
+							Factura
+						</th>
+						<th width="20%">
+							NCF
+						</th>
+					<!-- 	<th width="20%">
+							Descripción
+						</th> -->
+						<th width="10%">
+							Monto Factura
+						</th>
+						<th width="15%">
+							Monto Pagado
+						</th>
+						<th width="15%">
+							Total Pendiente
+						</th>
+						<th width="10%">
+							
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr ng-repeat="invoice in payment.invoices track by $index">
+					
+						<td>
+							<entitypicker ng-model="payment.invoices[$index]" ws-class="wsClassInvoice" ws-fields="wsFieldsInvoice" ws-filter="wsFilterInvoice" ws-label="'invoiceNumber'" disable="!payment.client._id" order-by="'code'"></entitypicker>
+						</td>
+						<td>
+							<input type="text" class="form-control" ng-model="invoice.ncf"  ng-disabled="true">
+						</td>
+					<!-- 	<td>
+							<input type="text" class="form-control" ng-model="item.description"  ng-disabled="isDisabled()">
+						</td> -->
+						<td>
+							<input type="number" class="form-control" ng-model="invoice.total"  ng-disabled="true">
+						</td>
+						<td>
+							<input type="number" class="form-control" ng-model="invoice.totalPaid"  ng-disabled="isDisabled()">
+						</td>
+						<td>
+							{{invoice.total - invoice.totalPaid | currency }}
+						</td>
+						<td>
+							<!-- <button type="button" class="btn btn-sm btn-danger update" ng-click="removeItem($index)"> -->
+								<a href="" ng-click="removeItem($index)"><i class="fa fa-times" style="color:black"></i></a> 
+							<!-- </button> -->
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6">
+							<button type="button" class="btn btn-sm btn-default update" ng-click="addItem()" style="width:100%">
+								<i class="fa fa-plus"></i> Agregar Factura
+							</button>
+						</td>
+					</tr>
+				</tbody>
+				
+			</table>
+
+				<div class="col-xs-12">
+							<div class="form-group">
+								<label for="comment">Comentarios</label>
+								<textarea id="comment" ng-model="payment.comment" class="form-control">
+								</textarea> 
+							</div>
+				</div>
+			<div class="col-xs-12" style="padding: 10px;">
+					<div class="btn btn-default" ngf-select="uploadFiles($files)" ngf-max-size="5MB" ngf-accept="'image/*'" multiple="multiple"><i class="fa fa-paperclip"></i> Adjuntar Pago</div>
+				</div>
+				<div class="col-sm-2" ng-repeat="photo in payment.photos track by $index" ">
+					<img class="img-rounded" style="width:120px" ng-src="{{photo.url}}" ng-click="showPicture($index)" style="position: absolute;" />
+					<!-- <button type="button" ng-click="removePhoto($index)" class="btn btn-sm btn-danger"> -->
+						<i class="fa fa-times" ng-click="removePhoto($index)" style="position: relative; "></i>
+					<!-- </button> -->
+				</div>
+		</div>
+	</div>
+</form>
+
+	
+</div>
+

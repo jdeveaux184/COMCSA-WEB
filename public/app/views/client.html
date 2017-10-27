@@ -1,0 +1,57 @@
+<div class="row hidden-print">
+	<div class="col-xs-12">
+		<h1 class="pull-left">
+			 <span> Cliente</span>
+		</h1>
+		<hr>	
+		<div class="btn-group pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			<button type="submit" form="userForm" class="btn btn-primary update" ng-click="save()"><i class="fa fa-save"></i>&nbsp;<span>Guardar</span></button>
+			<button type="submit" form="userForm" class="btn btn-default update" ng-click="showBalance()"><i class="fa fa-money"></i>&nbsp;<span>Estado de Cuentas</span></button>
+				<button type="button" class="btn btn-danger" ng-click="delete()" ng-if="user._id && userData.role._id == 1">
+					<i class="fa fa-trash"></i>&nbsp;<span>Borrar</span>
+				</button>
+			<back-button></back-button>
+		</div>
+		<hr />
+	</div>
+</div>
+<div class="col-xs-12 col-md-6 hidden-print">
+	<form class="form" id="userForm" name="userForm">
+		<div class="col-xs-12 ">
+			<div class="form-group">
+				<label for="type">Tipo Cliente</label>
+				<select class="form-control" ng-model="client.type" id="type" ng-options="type as type.description for type in typeList track by type._id"></select>
+			</div>
+		</div>
+		<div class="col-xs-12 ">
+			<div class="form-group">
+				<label for="name">Nombre Cliente</label>
+				<input type="text" class="form-control" ng-model="client.name" id="name" placeholder="Nombre del Cliente">
+			</div>
+		</div>
+		<div class="col-xs-12 ">
+			<div class="form-group">
+				<label for="id">Identificacion</label>
+				<input type="text" class="form-control" ng-model="client.id" id="id" placeholder="Número de Identificación">
+			</div>
+		</div>
+		<div class="col-xs-12 ">
+			<div class="form-group">
+				<label for="idType">Tipo Identificación</label>
+				<select class="form-control" ng-model="client.idType" id="idType" ng-options="idType as idType.description for idType in idTypeList track by idType._id"></select>
+			</div>
+		</div>
+		<div class="col-xs-12 " >
+			<div class="form-group">
+				<label for="email">Correo</label>
+				<input type="email" class="form-control" ng-model="client.email" id="email" placeholder="Correo Electrónico">
+			</div>
+		</div>
+		<div class="col-xs-12 " >
+			<div class="form-group">
+				<label for="name">Teléfono (Cel)</label>
+				<phone-model hide-labels="true" ng-model="client.phone"></phone-model>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="pull-left">
+            <span>Facturas (Cliente)</span>
+        </h1>
+        <hr>
+        <div class="btn-group pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+            <button type="button" class="btn btn-primary new" ng-click="createNew()" ng-if="userData.getAccessOfView('/invoice', true).write">
+               <span>Crear</span>
+            </button>
+        </div>
+        <hr />
+    </div>
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<list clase="invoice" fields="fields" showid="false" search-fields="search" filter-field="filter" list="list" filter-date="filterDate" excel-fields="excelFields" excel-title="'Invoices'"></list>
+	</div>
+</div>

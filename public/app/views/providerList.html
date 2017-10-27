@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h1 class="pull-left">
+             <span> Listado de Suplidores</span>
+        </h1>
+        <hr>
+        <div class="btn-group pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+            <back-button></back-button>
+            <button type="button" class="btn btn-primary new" ng-click="createNew()"><span>Nuevo Proveedor</span></button>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+	<div class="col-xs-12" >
+		<list clase="wsProvider" fields="fields" showid="false" search-fields="search" filter-field="" list="list"></list>
+	</div>
+</div>

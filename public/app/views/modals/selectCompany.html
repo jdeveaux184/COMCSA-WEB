@@ -1,0 +1,34 @@
+<div class=" modal-header modal-header-color dialog-header-confirm">
+  <h4 class="modal-title">
+    <label> Seleccionar una Compañía</label>  <!-- fa-2x -->
+  </h4>
+</div>
+
+<div class="modal-body">
+  <div class="col-md-12">
+    <div class="form-group">
+      <label class="col-md-2 control-label"> Compañía: </label>
+      <div class="col-md-10 input-group">
+        <select class="form-control" ng-model="selectedCompany" ng-options="company as company.entity.name for company in companies track by company._id">
+        </select>
+      </div>
+    </div>
+  </div>
+   <div class="col-md-12">
+    <div class="form-group">
+      <label class="col-md-2 control-label"> Proyecto: </label>
+      <div class="col-md-10 input-group">
+        <select class="form-control" ng-model="selectedBranch" ng-options="branch as branch.name for branch in branches track by branch._id">
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+
+  <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!selectedCompany || !selectedBranch" >
+    <i class="fa fa-check"></i> Guardar
+  </button>
+
+</div>

@@ -1,0 +1,87 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="pull-left">
+				 <span> Mantenimiento de Roles</span>
+		</h1>
+		<hr>
+		<div class="btn pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+			<back-button></back-button>
+			<button type="button" class="btn btn-default" ng-click="addOption()"><i class="fa fa-plus"></i>&nbsp;<span>Agregar Opción</span></button>
+			<button type="submit" form="userForm" class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i><span></span></button>
+		</div>
+		<hr />
+	</div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+		<ul class="nav nav-pills">
+			<li role="presentation" ng-class="{ active: selectedTab == role.description }" ng-repeat="role in roles track by $index" ng-click="selectTab(role)">
+				<a>{{role.description}}</a>
+			</li>
+		</ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+		<table class="table table-hover table-condensed">
+			<thead>
+				<tr>
+					<th class="col-xs-1">
+						Secuencia
+					</th>
+					<th class="col-xs-6">
+						Opción
+					</th>
+					<th>
+						Consultar
+					</th>
+					<th>
+						Insertar
+					</th>
+					<th>
+						Borrar
+					</th>
+					<th>
+						Actualizar
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="rOption in roleOptions[selectedId] | orderBy:'sort' track by $index">
+					<td>
+						<input type="number" class="form-control" ng-model="rOption.sort" />
+					</td>
+					<td>
+						<ui-select ng-model="rOption.option" theme="bootstrap">
+			            	<ui-select-match placeholder="Selecciona una opción...">
+			            		{{$select.selected.description}}
+			            	</ui-select-match>
+			            	<ui-select-choices repeat="o in options | filter: $select.search track by o._id">
+		              			<div ng-bind-html="o.description | highlight: $select.search"></div>
+			            	</ui-select-choices>
+			          	</ui-select>
+					</td>
+					<td>
+						<input type="checkbox" ng-model="rOption.read"  class="center-block" />
+					</td>
+					<td>
+						<input type="checkbox" ng-model="rOption.write"  class="center-block" />
+					</td>
+					<td>
+						<input type="checkbox" ng-model="rOption.delete" class="center-block"  />
+					</td>
+					<td>
+						<input type="checkbox" ng-model="rOption.update" class="center-block"  />
+					</td>
+					<td>
+						<!-- <button type="button" class="btn btn-sm btn-danger" ng-click="removeOption($index)"> -->
+							<i class="fa fa-times"></i>
+						<!-- </button> -->
+					</td>
+				</tr>
+			</tbody>
+		</table>
+  </div>
+</div>

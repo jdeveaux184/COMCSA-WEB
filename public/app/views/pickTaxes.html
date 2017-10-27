@@ -1,0 +1,65 @@
+
+<div class="modal-header modal-header-color dialog-header-confirm">
+  <h4 class="modal-title">
+		Elige los impuestos que aplican:
+  </h4>
+</div>
+<div class="modal-body">
+
+	<div class="row">
+		<div class="col-xs-12">
+			<table class="table table-bordered table-hover" width="100%" style="margin: 0 auto">
+				<thead>
+					<tr style="background-color: #3F51B5;">
+						<th width="50%">
+							Descripción
+						</th>
+						<th width="20%">
+							Porcentaje
+						</th>
+						<th width="20%">
+							Monto
+						</th>
+						<th width="10%">
+							
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="tax in taxes">
+						<td>
+							<span>{{tax.description}}</span>
+						</td>
+						<td>
+							<input type="number" class="form-control" ng-model="tax.percentage" />
+						</td>
+						<td>
+							<span>{{tax.amount | currency}}</span>
+						</td>
+						<td>
+							<input type="checkbox" class="checkbox" ng-model="tax.picked" ng-change="getTotal()">
+						</td>
+					</tr>
+					
+				</tbody>
+				<tfoot style="background-color: #C5CAE9;">
+					<tr>
+						<td> </td>
+						<td><label>Total Impuestos:</label></td>
+						<td><span>{{totalTaxes | currency}}</span></td>
+					</tr>
+				</tfoot>
+
+			</table>	
+
+		</div>
+	</div>
+</div>
+<div class="modal-footer hidden-print" >
+ 	<div class="button-group">
+	   <button class="btn btn-default" type="button" ng-click="apply()"><i class="fa fa-check"></i>&nbsp;Aplicar</button>
+	  <button class="btn btn-default" type="button" ng-click="close()"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
+ 		
+ 	</div>
+</div>
+

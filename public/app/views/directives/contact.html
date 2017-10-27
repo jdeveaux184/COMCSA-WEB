@@ -1,0 +1,39 @@
+<div class="col-xs-12 col-md-12" ng-if="!validate()">
+	<b style="color: red">La dirección no se ha llenado correctamento, favor revisar.</b>
+</div>
+<div class="col-xs-10 col-md-10">
+	<div class="form-group">
+		<label for="address">Dirección</label>
+		<div class="input-group">
+			<input type="text" class="form-control" id="address1" ng-model="ngModel.address1" ng-focus="geoLocate()" required/>
+      		<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" ng-click="reset()"><i class="fa fa-times"></i></button>
+      		</span>
+    	</div>
+	</div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<div class="form-group">
+		<label for="city">Ciudad</label>
+		<input type="text" class="form-control" id="city" ng-model="ngModel.city.description" disabled="disabled" required/>
+	</div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<div class="form-group">
+		<label for="province">Estado</label>
+		<input type="text" class="form-control" id="state" ng-model="ngModel.state.description" disabled="disabled" required/>
+	</div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<div class="form-group">
+		<label for="address2">Zipcode</label>
+		<input type="text" class="form-control" id="zipcode" ng-model="ngModel.zipcode" disabled="disabled" required/>
+	</div>
+</div>
+<div class="col-xs-12 col-md-6">
+	<div class="form-group">
+		<label for="country">País</label>
+		<input type="text" class="form-control" id="country" ng-model="ngModel.country.description" disabled="disabled" required/>
+	</div>
+</div>
+

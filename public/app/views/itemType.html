@@ -1,0 +1,35 @@
+<form class="form" id="itemForm" name="itemForm" >
+	<div class="row">
+		<div class="col-xs-9 fixed-top">
+			<h1 class="pull-left">
+				 <span>Categoría</span>
+			</h1>
+			<hr>
+			<div class="btn-group pull-right" style="margin-top: 20px;" role="group" aria-label="...">
+				<back-button></back-button>
+				<button type="button" form="itemForm" class="btn btn-primary" ng-click="save()"><i class="fa fa-save"></i>&nbsp;<span>Guardar</span></button>
+			</div>
+			<hr/>
+		</div>
+	</div>
+	<div class="row fixed-content">
+		<div class="col-xs-12 col-sm-6">
+			<div class="col-xs-12">
+				<div class="col-xs-12 pull-right">
+					<div class="form-group">
+						<label for="date">Código</label>
+						<input class="form-control" type="number" ng-model="itemType.code" />
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12">
+				<div class="col-xs-12 pull-right">
+					<div class="form-group">
+						<label for="date">Descripción</label>
+						<input class="form-control" type="text" ng-model="itemType.description" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
