@@ -18,7 +18,7 @@ angular.module('COMCSAApp')
 				ngChange: '&?',
         time: '=?'
       },
-      templateUrl: 'views/directives/datepicker.html', //put the template in this folder...or change the path
+      templateUrl: 'views/directives/datePicker.html', //put the template in this folder...or change the path
       link: function (scope, element, attrs) {},
       controller: function ($scope, $animate, $window, $timeout, toaster) {
         $timeout(function () {

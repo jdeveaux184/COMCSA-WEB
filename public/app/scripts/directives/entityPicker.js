@@ -17,7 +17,7 @@ angular.module('COMCSAApp')
 			wsList : '=',
 			wsDefault : '='
 		},
-		templateUrl : 'views/directives/entitypicker.html',
+		templateUrl : 'views/directives/entityPicker.html',
 		controller : function ($scope, $timeout, dialogs, toaster) {
 			$scope.wsLabel = $scope.wsLabel || 'entity.fullName';
 			$scope.showModal = function () {
