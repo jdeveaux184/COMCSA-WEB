@@ -22,7 +22,7 @@ angular.module('COMCSAApp')
 			type : 'text'
 		}, {
 			title : 'Factura #',
-			name : 'invoiceNumber',
+			name : 'code',
 			type : 'number'
 		}, {
 			title : 'Proveedor',
@@ -81,7 +81,7 @@ angular.module('COMCSAApp')
 			type : 'text'
 		}, {
 			title : 'Factura #',
-			name : 'invoiceNumber',
+			name : 'code',
 			type : 'number'
 		}, {
 			title : 'Proveedor',
