@@ -21,7 +21,7 @@ angular.module('COMCSAApp')
 		controller : function ($scope, $timeout, dialogs, toaster) {
 			$scope.wsLabel = $scope.wsLabel || 'entity.fullName';
 			$scope.showModal = function () {
-				var dialog = dialogs.create('views/directives/entitypicker.modal.html', 'EntityPickerCtrl', {
+				var dialog = dialogs.create('views/directives/entityPicker.modal.html', 'EntityPickerCtrl', {
 						wsClass : $scope.wsClass,
 						wsFields : $scope.wsFields,
 						filter : angular.copy($scope.wsFilter),
