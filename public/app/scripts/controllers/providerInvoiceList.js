@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name MobileCRMApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the MobileCRMApp
- */
 angular.module('COMCSAApp')
 .controller('ProviderInvoiceListCtrl', function ($scope, $rootScope, $location, ProviderInvoice) {
 	$scope.providerInvoice = ProviderInvoice;

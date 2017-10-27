@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name MobileCRMApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the MobileCRMApp
- */
 angular.module('COMCSAApp')
 .controller('ProviderDebitNoteListCtrl', function ($scope, $rootScope, $location, DebitNote) {
 	$scope.providerDebitNote = DebitNote;

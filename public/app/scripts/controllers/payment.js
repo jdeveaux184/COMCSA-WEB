@@ -1,12 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name MobileCRMApp.controller:AboutCtrl
- * @description
- * # AboutCtrl
- * Controller of the MobileCRMApp
- */
 angular.module('COMCSAApp')
 .controller('PaymentCtrl', function ($scope, $rootScope, $location, toaster, Client, $q, payment, paymentChoiceList, Invoice, dialogs, Company, companies, branches) {
 	$scope.payment = payment;
