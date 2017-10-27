@@ -553,7 +553,8 @@ var app = angular
 				var totalDays = new Date(year, month + 1, 0).getDate();
 				var query = {
 					fromDate : new Date(year, month, 1, 0, 0, 0),
-					toDate : new Date(year, month, totalDays, 23, 59, 59)
+					toDate : new Date(year, month, totalDays, 23, 59, 59),
+					'documentType.description' : 'Cuenta por Pagar'
 				};
 				return b.filter(query);
 			},
@@ -585,7 +586,8 @@ var app = angular
 				var totalDays = new Date(year, month + 1, 0).getDate();
 				var query = {
 					fromDate : new Date(year, month, 1, 0, 0, 0),
-					toDate : new Date(year, month, totalDays, 23, 59, 59)
+					toDate : new Date(year, month, totalDays, 23, 59, 59),
+					'documentType.description' : 'Factura'
 				};
 				return b.filter(query);
 			},
