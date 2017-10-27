@@ -22,7 +22,7 @@ angular.module('COMCSAApp')
 			type : 'text'
 		}, {
 			title : 'Factura #',
-			name : 'invoiceNumber',
+			name : 'code',
 			type : 'number'
 		}, {
 			title : 'Cliente',
@@ -52,7 +52,7 @@ angular.module('COMCSAApp')
 	$scope.search = [
 		'_id',
 		'date',
-		'invoiceNumber',
+		'code',
 		'client.name',
 		'branch.name',
 		'ncf',
@@ -81,7 +81,7 @@ angular.module('COMCSAApp')
 			type : 'text'
 		}, {
 			title : 'Factura #',
-			name : 'invoiceNumber',
+			name : 'code',
 			type : 'number'
 		}, {
 			title : 'Cliente',

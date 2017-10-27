@@ -52,7 +52,7 @@ angular.module('COMCSAApp')
 	$scope.search = [
 		'_id',
 		'date',
-		'invoiceNumber',
+		'code',
 		'client.name',
 		'branch.name',
 		'ncf',
