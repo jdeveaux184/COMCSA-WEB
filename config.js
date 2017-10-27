@@ -10,11 +10,11 @@ var config = {
 	},
 	production : {
 		APP_PORT : process.env.PORT || 80,
-		DB_URL: 'jdeveaux:comcsa123*@mlaburl/mlabdatabase',
-		DB_USER: 'jdeveaux',
-		DB_PASS: 'comcsa123*',
-		SERVER_URL: 'https://comcsa.herokuapp.com',
-		MAIL_USR: 'jdeveaux184@hotmail.com',
+		DB_URL: 'jdeveauxcomcsa:Jldvgzmn9ml>@ds235775.mlab.com:35775/heroku_85gjzcdt',
+		DB_USER: 'jdeveauxcomcsa',
+		DB_PASS: 'Jldvgzmn9ml*',
+		SERVER_URL: 'https://ingmontas.herokuapp.com',
+		MAIL_USR: 'jdeveaux18423434@hotmail.com',
 		MAIL_PASS: '*comcsa123',
 		PUBLIC_PATH: 'public/app'
 	}
