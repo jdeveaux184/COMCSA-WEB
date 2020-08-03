@@ -10,7 +10,7 @@ var config = {
 	},
 	production : {
 		APP_PORT : process.env.PORT || 80,
-		DB_URL: 'ingmontas:ingmontas2017!@ds235775.mlab.com:35775/heroku_85gjzcdt',
+		DB_URL: 'ingmontas:ingmontas2017!@heroku-85gjzcdt.ppts0.mongodb.net/heroku-85gjzcdt?retryWrites=true&w=majority',
 		DB_USER: 'ingmontas',
 		DB_PASS: 'ingmontas2017!',
 		SERVER_URL: 'https://ingmontas.herokuapp.com',
