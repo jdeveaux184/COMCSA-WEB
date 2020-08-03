@@ -1,7 +1,7 @@
 var config = {
 	development : {
 		APP_PORT : process.env.PORT || 8083,
-		DB_URL: 'ingmontas:ingmontas2017%21@heroku-85gjzcdt-shard-00-00.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-01.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-02.ppts0.mongodb.net:27017/heroku-85gjzcdt?ssl=true&replicaSet=atlas-13y36k-shard-0&authSource=admin&retryWrites=true&w=majority',
+		DB_URL: 'ingmontas:ingmontas2017!@heroku-85gjzcdt-shard-00-00.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-01.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-02.ppts0.mongodb.net:27017/heroku-85gjzcdt?ssl=true&replicaSet=atlas-13y36k-shard-0&authSource=admin&retryWrites=true&w=majority',
 		DB_USER: 'ingmontas',
 		DB_PASS: 'ingmontas2017!',
 		// SERVER_URL: 'http://localhost:8083',
@@ -11,7 +11,7 @@ var config = {
 	},
 	production : {
 		APP_PORT : process.env.PORT || 80,
-		DB_URL: 'ingmontas:ingmontas2017%21@heroku-85gjzcdt-shard-00-00.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-01.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-02.ppts0.mongodb.net:27017/heroku-85gjzcdt?ssl=true&replicaSet=atlas-13y36k-shard-0&authSource=admin&retryWrites=true&w=majority',
+		DB_URL: 'ingmontas:ingmontas2017!@heroku-85gjzcdt-shard-00-00.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-01.ppts0.mongodb.net:27017,heroku-85gjzcdt-shard-00-02.ppts0.mongodb.net:27017/heroku-85gjzcdt?ssl=true&replicaSet=atlas-13y36k-shard-0&authSource=admin&retryWrites=true&w=majority',
 		DB_USER: 'ingmontas',
 		DB_PASS: 'ingmontas2017!',
 		SERVER_URL: 'https://ingmontas.herokuapp.com',
