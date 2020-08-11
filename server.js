@@ -47,8 +47,13 @@ d.run(function () {
 	var config = configuration.init(app);
 	// mail.init(config);
 	app.use('/', express.static(path.join(__dirname, config.PUBLIC_PATH)));
-	//Configuracion db
-	app.db = require('monk')(config.DB_URL);
+	//Configuracion db	
+	var mongo = require('mongodb')
+	app.db = require('monk')(config.DB_URL, {
+		authSource: 'admin'
+	});
+
+
 	//WebAPI
 	require('./api/ws/list')('/api/list', app);
 	require('./api/ws/user')('/api/user', app, secret, config);
