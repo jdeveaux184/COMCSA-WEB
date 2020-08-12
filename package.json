@@ -7,7 +7,7 @@
     "bignumber": "^1.1.0",
     "body-parser": "^1.13.2",
     "domain": "0.0.1",
-    "exceljs": "^0.2.25",
+    "exceljs": "^4.1.1",
     "express": "^4.13.1",
     "express-jwt": "^6.0.0",
     "express-validator": "^2.13.0",
